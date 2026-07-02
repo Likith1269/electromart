@@ -18,61 +18,135 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <body>
 
-<header>
+<nav class="navbar">
 
-<h1><i class="fa-solid fa-user-shield"></i> Admin Dashboard</h1>
+<div class="logo">
 
-<p>Manage Products Efficiently</p>
+⚡ ElectroMart Admin
 
-</header>
+</div>
 
-<div class="container">
+<ul>
 
-<div class="card">
+<li><a href="index.html">🏠 Home</a></li>
 
-<h2>📦 Products</h2>
+<li><a href="customer.html">🛍 Store</a></li>
+
+<li><a href="vendor.html">🏪 Vendor</a></li>
+
+<li><a href="login.html">🚪 Logout</a></li>
+
+</ul>
+
+</nav>
+
+<section class="cart-page">
+
+<h1 class="cart-heading">
+
+📊 Admin Dashboard
+
+</h1>
+
+<p class="cart-subtitle">
+
+Manage Products, Orders and Revenue
+
+</p>
+
+<div class="brand-grid">
+
+<div class="brand-card">
+
+📦
+
+<h3>Total Products</h3>
 
 <h1 id="productCount">0</h1>
 
 </div>
 
-<div class="card">
+<div class="brand-card">
 
-<h2>🛒 Orders</h2>
+🛒
+
+<h3>Total Orders</h3>
 
 <h1 id="orderCount">0</h1>
 
 </div>
 
-<div class="card">
+<div class="brand-card">
 
-<h2>💰 Revenue</h2>
+💰
+
+<h3>Total Revenue</h3>
 
 <h1 id="revenue">₹0</h1>
 
 </div>
 
+<div class="brand-card">
+
+⭐
+
+<h3>Active Vendors</h3>
+
+<h1>1</h1>
+
 </div>
 
-<div class="form-container">
+</div>
+<div class="checkout-form">
 
-<h2>Add New Product</h2>
+<h2>➕ Add New Product</h2>
 
-<input type="text" id="name" placeholder="Product Name">
+<div class="row">
 
-<input type="text" id="brand" placeholder="Brand">
+<input type="text"
+id="name"
+placeholder="📦 Product Name">
 
-<input type="number" id="price" placeholder="Price">
+<input type="text"
+id="brand"
+placeholder="🏷 Brand">
 
-<input type="text" id="category" placeholder="Category">
+</div>
 
-<input type="file" id="imageFile">
+<div class="row">
 
-<input type="text" id="image" placeholder="Image URL">
+<input type="number"
+id="price"
+placeholder="💰 Price">
 
-<textarea id="description" placeholder="Description"></textarea>
+<input type="text"
+id="category"
+placeholder="📂 Category">
 
-<button onclick="addProduct()">
+</div>
+
+<label><b>Upload Product Image</b></label>
+
+<input
+type="file"
+id="imageFile">
+
+<br><br>
+
+<label><b>Or Image URL</b></label>
+
+<input
+type="text"
+id="image"
+placeholder="https://example.com/image.jpg">
+
+<textarea
+id="description"
+placeholder="📝 Product Description"></textarea>
+
+<button
+class="checkout-btn"
+onclick="addProduct()">
 
 ➕ Add Product
 
@@ -80,13 +154,54 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 </div>
 
-<h2 class="title">
+<br><br>
 
-📦 Product List
+<h2 class="cart-heading">
+
+📦 Product Inventory
 
 </h2>
 
-<div id="products" class="product-grid">
+<div
+id="products"
+class="product-grid">
+
+</div>
+
+</section>
+<h2 class="cart-heading">
+
+🛒 Recent Orders
+
+</h2>
+
+<div class="checkout-form">
+
+<table class="order-table">
+
+<thead>
+
+<tr>
+
+<th>Customer</th>
+
+<th>Amount</th>
+
+<th>Payment</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ordersTable">
+
+</tbody>
+
+</table>
 
 </div>
 
@@ -95,3 +210,4 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 </body>
 
 </html>
+

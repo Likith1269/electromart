@@ -2,92 +2,170 @@ let products = JSON.parse(localStorage.getItem("products")) || [];
 
 displayProducts();
 
-function displayProducts(list = products){
+function displayProducts(list = products) {
 
-const container=document.getElementById("customerProducts");
+    const container = document.getElementById("customerProducts");
 
-container.innerHTML="";
+    container.innerHTML = "";
 
-if(list.length===0){
+    if (list.length === 0) {
 
-container.innerHTML="<h2>No Products Available</h2>";
+        container.innerHTML = `
+        <div style="width:100%;text-align:center;padding:60px;">
+            <h2>😔 No Products Available</h2>
+        </div>
+        `;
 
-return;
+        return;
+    }
 
-}
+    list.forEach((product, index) => {
 
-list.forEach(product=>{
+        let oldPrice = Math.round(Number(product.price) * 1.20);
 
-container.innerHTML+=`
+        container.innerHTML += `
 
 <div class="product-card">
 
-<div style="position:relative;">
+<div class="product-image">
 
-${product.image && product.image.trim()!=="" ?
+${product.image && product.image.trim() !== ""
 
-`<img src="${product.image}" alt="${product.name}">`
+? `<img src="${product.image}" alt="${product.name}">`
 
-:
+: `<div class="no-image">📦</div>`}
 
-`<div class="no-image">No Image</div>`
+<div class="discount-badge">
 
-}
+20% OFF
 
-<span style="
-position:absolute;
-top:10px;
-left:10px;
-background:red;
-color:white;
-padding:5px 10px;
-border-radius:20px;
-font-size:12px;
-">
+</div>
 
-10% OFF
+<div class="wishlist-icon"
+
+onclick="wishlist(${index})">
+
+❤
+
+</div>
+
+</div>
+
+<div class="product-info">
+
+<h3>${product.name}</h3>
+
+<p class="brand">
+
+${product.brand}
+
+</p>
+
+<div class="rating">
+
+⭐⭐⭐⭐⭐
+
+<span>
+
+4.8
 
 </span>
 
 </div>
 
-<h3>${product.name}</h3>
+<div class="price">
 
-<p><b>Brand :</b> ${product.brand}</p>
+<span class="old-price">
 
-<p><b>Category :</b> ${product.category}</p>
+₹${oldPrice}
 
-<p style="font-size:18px;color:#16a34a;">
+</span>
 
-₹ ${product.price}
+<span class="new-price">
+
+₹${product.price}
+
+</span>
+
+</div>
+
+<p class="desc">
+
+${product.description || "Premium Electronic Product"}
 
 </p>
 
-<p style="color:orange;font-size:18px;">
+<div class="btn-group">
 
-★★★★★
+<button class="cart-btn"
 
-</p>
-
-<button onclick="addToCart('${product.name}')">
+onclick="addToCart(${index})">
 
 🛒 Add To Cart
 
 </button>
 
+<button class="buy-btn"
+
+onclick="buyNow(${index})">
+
+⚡ Buy Now
+
+</button>
+
+</div>
+
+</div>
+
 </div>
 
 `;
 
-});
+    });
+
+}
+
+function addToCart(index){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push(products[index]);
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+alert("✅ Product Added To Cart");
+
+}
+
+function buyNow(index){
+
+let cart=[];
+
+cart.push(products[index]);
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+window.location.href="checkout.html";
+
+}
+
+function wishlist(index){
+
+let wishlist=JSON.parse(localStorage.getItem("wishlist"))||[];
+
+wishlist.push(products[index]);
+
+localStorage.setItem("wishlist",JSON.stringify(wishlist));
+
+alert("❤ Added To Wishlist");
 
 }
 
 function searchProduct(){
 
-const keyword=document.getElementById("search").value.toLowerCase();
+let keyword=document.getElementById("search").value.toLowerCase();
 
-const filtered=products.filter(product=>
+let filtered=products.filter(product=>
 
 product.name.toLowerCase().includes(keyword)||
 
@@ -101,16 +179,203 @@ displayProducts(filtered);
 
 }
 
-function addToCart(name){
+let slideIndex=0;
 
-const product=products.find(p=>p.name===name);
+showSlides();
 
-let cart=JSON.parse(localStorage.getItem("cart"))||[];
+function showSlides(){
 
-cart.push(product);
+let slides=document.getElementsByClassName("slides");
 
-localStorage.setItem("cart",JSON.stringify(cart));
+for(let i=0;i<slides.length;i++){
 
-alert("Product Added Successfully");
+slides[i].style.display="none";
+
+}
+
+slideIndex++;
+
+if(slideIndex>slides.length){
+
+slideIndex=1;
+
+}
+
+slides[slideIndex-1].style.display="block";
+
+setTimeout(showSlides,3000);
+
+}
+
+let time=7200;
+
+setInterval(function(){
+
+let hours=Math.floor(time/3600);
+
+let minutes=Math.floor((time%3600)/60);
+
+let seconds=time%60;
+
+document.getElementById("timer").innerHTML=
+
+hours+"h : "+minutes+"m : "+seconds+"s";
+
+if(time>0){
+
+time--;
+
+}
+
+},1000);
+function filterCategory(category){
+
+if(category==="All"){
+
+displayProducts(products);
+
+return;
+
+}
+
+let filtered=products.filter(product=>
+
+product.category.toLowerCase()===category.toLowerCase()
+
+);
+
+displayProducts(filtered);
+
+}
+
+function sortLowHigh(){
+
+let sorted=[...products];
+
+sorted.sort((a,b)=>Number(a.price)-Number(b.price));
+
+displayProducts(sorted);
+
+}
+
+function sortHighLow(){
+
+let sorted=[...products];
+
+sorted.sort((a,b)=>Number(b.price)-Number(a.price));
+
+displayProducts(sorted);
+
+}
+function displayBestSeller(){
+
+const container = document.getElementById("bestSellerProducts");
+
+if(!container) return;
+
+container.innerHTML = "";
+
+products.slice(0,4).forEach((product,index)=>{
+
+container.innerHTML += createCard(product,index);
+
+});
+
+}
+
+function displayLatest(){
+
+const container = document.getElementById("latestProducts");
+
+if(!container) return;
+
+container.innerHTML = "";
+
+// Products after the first 4
+products.slice(4,8).forEach((product,index)=>{
+
+container.innerHTML += createCard(product,index+4);
+
+});
+
+}
+
+function createCard(product,index){
+
+let oldPrice=Math.round(Number(product.price)*1.2);
+
+return `
+
+<div class="product-card">
+
+<div class="product-image">
+
+${product.image?
+
+`<img src="${product.image}">`
+
+:`<div class="no-image">📦</div>`}
+
+<div class="discount-badge">
+
+20% OFF
+
+</div>
+
+</div>
+
+<div class="product-info">
+
+<h3>${product.name}</h3>
+
+<p>${product.brand}</p>
+
+<p class="rating">
+
+⭐⭐⭐⭐⭐ 4.8
+
+</p>
+
+<p>
+
+<span class="old-price">
+
+₹${oldPrice}
+
+</span>
+
+<span class="new-price">
+
+₹${product.price}
+
+</span>
+
+</p>
+
+<div class="btn-group">
+
+<button class="cart-btn"
+
+onclick="addToCart(${index})">
+
+🛒 Cart
+
+</button>
+
+<button class="buy-btn"
+
+onclick="buyNow(${index})">
+
+⚡ Buy
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
 
 }

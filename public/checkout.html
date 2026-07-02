@@ -18,23 +18,63 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <body>
 
-<header>
+<nav class="navbar">
 
-<h1><i class="fa-solid fa-credit-card"></i> Checkout</h1>
+<div class="logo">
 
-<p>Secure Payment</p>
+⚡ ElectroMart
 
-</header>
+</div>
 
-<div class="form-container">
+<ul>
 
-<h2>Delivery Details</h2>
+<li><a href="customer.html">🛍 Products</a></li>
+
+<li><a href="cart.html">🛒 Cart</a></li>
+
+</ul>
+
+</nav>
+
+<section class="checkout-page">
+
+<h1 class="checkout-heading">
+
+💳 Secure Checkout
+
+</h1>
+
+<p class="checkout-subtitle">
+
+Complete your order securely.
+
+</p>
+
+<div class="checkout-layout">
+
+<!-- LEFT -->
+
+<div class="checkout-form">
+
+<h2>📍 Delivery Details</h2>
 
 <input type="text" id="name" placeholder="👤 Full Name">
 
 <input type="text" id="phone" placeholder="📞 Phone Number">
 
+<input type="email" id="email" placeholder="📧 Email">
+
 <textarea id="address" placeholder="🏠 Delivery Address"></textarea>
+
+<div class="row">
+
+<input type="text" id="city" placeholder="🏙 City">
+
+<input type="text" id="pincode" placeholder="📮 PIN Code">
+
+</div>
+
+<h2>💳 Payment Method</h2>
 
 <select id="payment">
 
@@ -46,17 +86,57 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <option>Debit Card</option>
 
+<option>Net Banking</option>
+
 </select>
 
-<h2 id="totalAmount"></h2>
+</div>
 
-<button onclick="placeOrder()">
+<!-- RIGHT -->
+
+<div class="checkout-summary">
+
+<h2>🧾 Order Summary</h2>
+
+<div id="checkoutItems"></div>
+
+<hr>
+
+<div class="summary-row">
+
+<span>Delivery</span>
+
+<span style="color:green;">FREE</span>
+
+</div>
+
+<div class="summary-row">
+
+<span>Discount</span>
+
+<span style="color:red;">-₹100</span>
+
+</div>
+
+<div class="summary-total">
+
+<span>Grand Total</span>
+
+<span id="totalAmount"></span>
+
+</div>
+
+<button class="checkout-btn" onclick="placeOrder()">
 
 🛍 Place Order
 
 </button>
 
 </div>
+
+</div>
+
+</section>
 
 <script src="checkout.js"></script>
 

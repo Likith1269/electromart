@@ -18,51 +18,136 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <body>
 
-<header>
+<nav class="navbar">
 
-<h1><i class="fa-solid fa-cart-shopping"></i> Shopping Cart</h1>
+<div class="logo">
+⚡ ElectroMart
+</div>
 
-<p>Review Your Products</p>
+<ul>
 
-</header>
+<li><a href="customer.html">🛍 Continue Shopping</a></li>
 
-<div class="product-list">
+<li><a href="checkout.html">💳 Checkout</a></li>
 
-<h2 class="title">
+</ul>
 
-🛒 My Cart
+</nav>
+
+<section class="cart-page">
+
+<h1 class="cart-heading">
+
+🛒 Shopping Cart
+
+</h1>
+
+<p class="cart-subtitle">
+
+Review your selected products before checkout.
+
+</p>
+
+<div class="cart-layout">
+
+<!-- Left Side -->
+
+<div class="cart-products">
+
+<h2>
+
+🛍 My Cart Items
 
 </h2>
 
-<div id="cartItems"></div>
+<div id="cartItems">
 
-<div style="
-width:90%;
-margin:auto;
-background:white;
-padding:30px;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,.1);
-text-align:center;
-">
+</div>
 
-<h2 id="totalPrice">
+</div>
 
-Total : ₹0
+<!-- Right Side -->
+
+<div class="cart-summary">
+
+<h2>
+
+Order Summary
 
 </h2>
 
-<br>
+<div class="summary-row">
 
-<button class="buy-btn" onclick="buyNow()">
+<span>Items</span>
+
+<span id="itemCount">0</span>
+
+</div>
+
+<div class="summary-row">
+
+<span>Delivery</span>
+
+<span style="color:green;">FREE</span>
+
+</div>
+
+<div class="summary-row">
+
+<span>Discount</span>
+
+<span style="color:red;">
+
+-₹100
+
+</span>
+
+</div>
+
+<hr>
+
+<div class="summary-total">
+
+<span>Total</span>
+
+<span id="totalPrice">
+
+₹0
+
+</span>
+
+</div>
+
+<input
+type="text"
+placeholder="🎁 Enter Coupon Code"
+class="coupon-box">
+
+<button class="checkout-btn"
+onclick="buyNow()">
 
 Proceed To Checkout
+
+</button>
+
+<button class="continue-btn"
+onclick="window.location='customer.html'">
+
+Continue Shopping
 
 </button>
 
 </div>
 
 </div>
+
+</section>
+
+<script src="cart.js"></script>
+
+</body>
+
+</html>
 
 <script src="cart.js"></script>
 

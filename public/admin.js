@@ -4,22 +4,23 @@ let orders = JSON.parse(localStorage.getItem("orders")) || [];
 dashboard();
 
 displayProducts();
-
 function dashboard(){
 
-document.getElementById("productCount").innerHTML=products.length;
+document.getElementById("productCount").innerHTML = products.length;
 
-document.getElementById("orderCount").innerHTML=orders.length;
+document.getElementById("orderCount").innerHTML = orders.length;
 
-let revenue=0;
+let revenue = 0;
 
 orders.forEach(order=>{
 
-revenue+=Number(order.total);
+revenue += Number(order.total);
 
 });
 
-document.getElementById("revenue").innerHTML="₹ "+revenue;
+document.getElementById("revenue").innerHTML = "₹" + revenue;
+
+displayOrders();
 
 }
 
@@ -75,35 +76,77 @@ location.reload();
 
 function displayProducts(){
 
-const container=document.getElementById("products");
+const container = document.getElementById("products");
 
-container.innerHTML="";
+container.innerHTML = "";
 
 products.forEach((product,index)=>{
 
-container.innerHTML+=`
+container.innerHTML += `
 
 <div class="product-card">
 
-${product.image?
+<div class="product-image">
 
-`<img src="${product.image}">`
-
+${
+product.image
+?
+`<img src="${product.image}" alt="${product.name}">`
 :
+`<div class="no-image">📦</div>`
+}
 
-`<div class="no-image">No Image</div>`}
+</div>
+
+<div class="product-info">
 
 <h3>${product.name}</h3>
 
-<p>${product.brand}</p>
+<p class="brand">
 
-<p><b>₹ ${product.price}</b></p>
+🏷 ${product.brand}
 
-<button onclick="deleteProduct(${index})">
+</p>
+
+<p>
+
+📂 ${product.category}
+
+</p>
+
+<div class="price">
+
+₹${product.price}
+
+</div>
+
+<p class="desc">
+
+${product.description || "Premium Electronic Product"}
+
+</p>
+
+<div class="btn-group">
+
+<button class="buy-btn"
+
+onclick="editProduct(${index})">
+
+✏ Edit
+
+</button>
+
+<button class="cart-btn"
+
+onclick="deleteProduct(${index})">
 
 🗑 Delete
 
 </button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -120,5 +163,97 @@ products.splice(index,1);
 localStorage.setItem("products",JSON.stringify(products));
 
 location.reload();
+
+}
+function editProduct(index){
+
+const product = products[index];
+
+document.getElementById("name").value = product.name;
+
+document.getElementById("brand").value = product.brand;
+
+document.getElementById("price").value = product.price;
+
+document.getElementById("category").value = product.category;
+
+document.getElementById("image").value = product.image;
+
+document.getElementById("description").value = product.description;
+
+products.splice(index,1);
+
+localStorage.setItem("products",JSON.stringify(products));
+
+displayProducts();
+
+dashboard();
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+function displayOrders(){
+
+const table = document.getElementById("ordersTable");
+
+if(!table) return;
+
+table.innerHTML = "";
+
+if(orders.length === 0){
+
+table.innerHTML = `
+
+<tr>
+
+<td colspan="5" style="text-align:center;padding:25px;">
+
+No Orders Available
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+orders.slice().reverse().forEach(order=>{
+
+table.innerHTML += `
+
+<tr>
+
+<td>${order.customer}</td>
+
+<td>₹${order.total}</td>
+
+<td>${order.payment}</td>
+
+<td>
+
+<span class="status pending">
+
+${order.status}
+
+</span>
+
+</td>
+
+<td>${order.date}</td>
+
+</tr>
+
+`;
+
+});
 
 }

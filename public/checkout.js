@@ -2,12 +2,53 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 let total = 0;
 
-cart.forEach(product => {
-    total += Number(product.price);
+const checkoutItems = document.getElementById("checkoutItems");
+
+checkoutItems.innerHTML = "";
+
+cart.forEach((product,index)=>{
+
+let qty = product.quantity || 1;
+
+let subtotal = Number(product.price) * qty;
+
+total += subtotal;
+
+checkoutItems.innerHTML += `
+
+<div class="checkout-card">
+
+<div class="checkout-image">
+
+${
+product.image && product.image.trim()!==""
+?
+`<img src="${product.image}">`
+:
+`<div class="no-image">📦</div>`
+}
+
+</div>
+
+<div class="checkout-info">
+
+<h3>${product.name}</h3>
+
+<p>${product.brand}</p>
+
+<p>Quantity : ${qty}</p>
+
+<p class="new-price">₹${subtotal}</p>
+
+</div>
+
+</div>
+
+`;
+
 });
 
-document.getElementById("totalAmount").innerHTML =
-"Grand Total : ₹ " + total;
+document.getElementById("totalAmount").innerHTML = "₹" + Math.max(total-100,0);
 
 function placeOrder(){
 
@@ -15,13 +56,19 @@ const name=document.getElementById("name").value.trim();
 
 const phone=document.getElementById("phone").value.trim();
 
+const email=document.getElementById("email").value.trim();
+
 const address=document.getElementById("address").value.trim();
+
+const city=document.getElementById("city").value.trim();
+
+const pincode=document.getElementById("pincode").value.trim();
 
 const payment=document.getElementById("payment").value;
 
-if(name===""||phone===""||address===""){
+if(name===""||phone===""||email===""||address===""||city===""||pincode===""){
 
-alert("Please fill all details");
+alert("Please fill all details.");
 
 return;
 
@@ -31,15 +78,21 @@ const order={
 
 customer:name,
 
-phone:phone,
+phone,
 
-address:address,
+email,
 
-payment:payment,
+address,
+
+city,
+
+pincode,
+
+payment,
 
 products:cart,
 
-total:total,
+total:Math.max(total-100,0),
 
 status:"Pending",
 

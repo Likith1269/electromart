@@ -2,63 +2,398 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Customer Panel</title>
+<title>ElectroMart</title>
 
 <link rel="stylesheet" href="style.css">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<header>
+<!-- ================= NAVBAR ================= -->
 
-<h1><i class="fa-solid fa-bolt"></i> ElectroMart</h1>
+<nav class="navbar">
 
-<p>Explore Premium Electronic Products</p>
+<div class="logo">
 
-</header>
+⚡ ElectroMart
 
-<div class="customer-header">
+</div>
+
+<ul>
+
+<li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+
+<li><a href="customer.html"><i class="fa fa-box"></i> Products</a></li>
+
+<li><a href="cart.html"><i class="fa fa-cart-shopping"></i> Cart</a></li>
+
+</ul>
+
+</nav>
+
+<!-- ================= IMAGE SLIDER ================= -->
+
+<div class="slider">
+
+<div class="slides fade">
+
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1600">
+
+<div class="caption">
+
+Latest Smartphones
+
+</div>
+
+</div>
+
+<div class="slides fade">
+
+<img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1600">
+
+<div class="caption">
+
+Powerful Laptops
+
+</div>
+
+</div>
+
+<div class="slides fade">
+
+<img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1600">
+
+<div class="caption">
+
+Smart TVs
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= HERO ================= -->
+
+<section class="banner">
+
+<div>
+
+<h1>BIG ELECTRONICS SALE</h1>
+
+<p>Up to 50% OFF on Premium Electronics</p>
+
+<button>Shop Now</button>
+
+</div>
+
+</section>
+
+<!-- ================= CATEGORY ================= -->
+
+<div class="categories">
+
+<div class="cat">📱<p>Mobiles</p></div>
+
+<div class="cat">💻<p>Laptops</p></div>
+
+<div class="cat">🎧<p>Headphones</p></div>
+
+<div class="cat">📺<p>TVs</p></div>
+
+<div class="cat">⌚<p>Watches</p></div>
+
+<div class="cat">🖥️<p>Monitors</p></div>
+
+<div class="cat">🎮<p>Gaming</p></div>
+
+<div class="cat">⌨️<p>Accessories</p></div>
+
+</div>
+
+<!-- ================= BRANDS ================= -->
+
+<section class="brands">
+
+<h2>🏆 Top Brands</h2>
+
+<div class="brand-grid">
+
+<div class="brand-card">🍎<h3>Apple</h3></div>
+
+<div class="brand-card">📱<h3>Samsung</h3></div>
+
+<div class="brand-card">💻<h3>Dell</h3></div>
+
+<div class="brand-card">🖥️<h3>HP</h3></div>
+
+<div class="brand-card">🎧<h3>Sony</h3></div>
+
+<div class="brand-card">📺<h3>LG</h3></div>
+
+</div>
+
+</section>
+
+<!-- ================= TODAY'S DEAL ================= -->
+
+<!-- Today's Deals -->
+
+<div class="container">
+
+<section class="deals">
+
+<h2>🔥 Today's Deals</h2>
+
+<div class="deal-banner">
+
+<div>
+
+<h1>Mega Electronics Sale</h1>
+
+<p>Save up to 60% on Mobiles, Laptops & Accessories.</p>
+
+<button>Shop Deals</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Flash Sale -->
+
+
+
+</div>
+
+<!-- ================= SEARCH ================= -->
+
+<div class="search-box">
 
 <input
 type="text"
 id="search"
-placeholder="🔍 Search Mobiles, Laptops, TVs..."
+placeholder="🔍 Search Products..."
 onkeyup="searchProduct()">
 
 </div>
 
-<div class="customer-actions">
+<!-- ================= SHOP ================= -->
+<!-- PRODUCT FILTER BAR -->
 
-<a href="cart.html">
+<div class="top-filter">
+
+<select onchange="filterCategory(this.value)">
+
+<option value="All">All Categories</option>
+
+<option value="Mobiles">Mobiles</option>
+
+<option value="Laptops">Laptops</option>
+
+<option value="Headphones">Headphones</option>
+
+<option value="TV">TV</option>
+
+</select>
+
+<select onchange="sortProducts(this.value)">
+
+<option value="">Sort By</option>
+
+<option value="low">Price Low → High</option>
+
+<option value="high">Price High → Low</option>
+
+</select>
+
+</div>
+
+<!-- Best Sellers -->
+
+<section class="product-section">
+
+<h2>🔥 Best Sellers</h2>
+
+<div id="bestSellerProducts" class="horizontal-products"></div>
+
+</section>
+
+<!-- Latest Arrivals -->
+
+<section class="product-section">
+
+<h2>🆕 Latest Arrivals</h2>
+
+<div id="latestProducts" class="horizontal-products"></div>
+
+</section>
+
+<!-- All Products -->
+
+<section class="product-section">
+
+<h2>🛍 All Products</h2>
+
+<div id="customerProducts" class="product-grid"></div>
+
+</section>
+
+<!-- ================= WHY SHOP WITH US ================= -->
+
+<section class="brands">
+
+<h2>⭐ Why Shop With Us?</h2>
+
+<div class="brand-grid">
+
+<div class="brand-card">
+
+🚚
+
+<h3>Free Delivery</h3>
+
+<p>Fast delivery across India</p>
+
+</div>
+
+<div class="brand-card">
+
+🔒
+
+<h3>Secure Payment</h3>
+
+<p>100% Safe & Secure Payments</p>
+
+</div>
+
+<div class="brand-card">
+
+💯
+
+<h3>100% Genuine</h3>
+
+<p>Original Branded Products</p>
+
+</div>
+
+<div class="brand-card">
+
+↩️
+
+<h3>Easy Returns</h3>
+
+<p>7 Days Return Policy</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+
+<section class="newsletter">
+
+<h2>📧 Stay Updated</h2>
+
+<p>Subscribe to receive offers, discounts and latest product updates.</p>
+
+<div class="newsletter-box">
+
+<input
+type="email"
+placeholder="Enter your Email">
 
 <button>
 
-🛒 Cart
+Subscribe
 
 </button>
 
-</a>
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="footer-container">
+
+<div>
+
+<h2>⚡ ElectroMart</h2>
+
+<p>Your One Stop Electronics Store</p>
+
+<p>Shop the latest electronics at the best prices.</p>
 
 </div>
 
-<h2 class="title">
+<div>
 
-🔥 Featured Products
+<h3>Quick Links</h3>
 
-</h2>
+<p><a href="index.html">🏠 Home</a></p>
 
-<div id="customerProducts" class="product-grid">
+<p><a href="customer.html">📦 Products</a></p>
+
+<p><a href="cart.html">🛒 Cart</a></p>
+
+<p><a href="login.html">🔑 Login</a></p>
 
 </div>
+
+<div>
+
+<h3>Customer Support</h3>
+
+<p>📧 support@electromart.com</p>
+
+<p>📞 +91 9876543210</p>
+
+<p>🕒 Mon - Sat (9 AM - 8 PM)</p>
+
+</div>
+
+<div>
+
+<h3>Follow Us</h3>
+
+<p>
+
+<i class="fab fa-facebook fa-2x"></i>
+
+<i class="fab fa-instagram fa-2x"></i>
+
+<i class="fab fa-twitter fa-2x"></i>
+
+<i class="fab fa-linkedin fa-2x"></i>
+
+</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<p style="text-align:center;padding:20px;">
+
+© 2026 ElectroMart | Developed by Likith K
+
+</p>
+
+</footer>
 
 <script src="customer.js"></script>
 
