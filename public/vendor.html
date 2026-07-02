@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vendor Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1><i class="fa-solid fa-store"></i> Vendor Dashboard</h1>
+
+<p>Manage Your Store</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>📦 Products</h2>
+<h1 id="productCount">0</h1>
+</div>
+
+<div class="card">
+<h2>🛒 Orders</h2>
+<h1 id="orderCount">0</h1>
+</div>
+
+<div class="card">
+<h2>💰 Earnings</h2>
+<h1 id="earnings">₹0</h1>
+</div>
+
+</div>
+
+<div class="form-container">
+
+<h2>Add Product</h2>
+
+<input type="text" id="name" placeholder="Product Name">
+
+<input type="text" id="brand" placeholder="Brand">
+
+<input type="number" id="price" placeholder="Price">
+
+<input type="text" id="category" placeholder="Category">
+
+<input type="file" id="imageFile">
+
+<input type="text" id="image" placeholder="Image URL">
+
+<textarea id="description" placeholder="Description"></textarea>
+
+<button onclick="addVendorProduct()">
+
+➕ Add Product
+
+</button>
+
+</div>
+
+<h2 class="title">📦 My Products</h2>
+
+<div id="vendorProducts" class="product-grid"></div>
+
+<script src="vendor.js"></script>
+
+</body>
+
+</html>

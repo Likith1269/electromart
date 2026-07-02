@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1><i class="fa-solid fa-user-shield"></i> Admin Dashboard</h1>
+
+<p>Manage Products Efficiently</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>📦 Products</h2>
+
+<h1 id="productCount">0</h1>
+
+</div>
+
+<div class="card">
+
+<h2>🛒 Orders</h2>
+
+<h1 id="orderCount">0</h1>
+
+</div>
+
+<div class="card">
+
+<h2>💰 Revenue</h2>
+
+<h1 id="revenue">₹0</h1>
+
+</div>
+
+</div>
+
+<div class="form-container">
+
+<h2>Add New Product</h2>
+
+<input type="text" id="name" placeholder="Product Name">
+
+<input type="text" id="brand" placeholder="Brand">
+
+<input type="number" id="price" placeholder="Price">
+
+<input type="text" id="category" placeholder="Category">
+
+<input type="file" id="imageFile">
+
+<input type="text" id="image" placeholder="Image URL">
+
+<textarea id="description" placeholder="Description"></textarea>
+
+<button onclick="addProduct()">
+
+➕ Add Product
+
+</button>
+
+</div>
+
+<h2 class="title">
+
+📦 Product List
+
+</h2>
+
+<div id="products" class="product-grid">
+
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>

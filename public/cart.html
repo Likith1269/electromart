@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shopping Cart</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1><i class="fa-solid fa-cart-shopping"></i> Shopping Cart</h1>
+
+<p>Review Your Products</p>
+
+</header>
+
+<div class="product-list">
+
+<h2 class="title">
+
+🛒 My Cart
+
+</h2>
+
+<div id="cartItems"></div>
+
+<div style="
+width:90%;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+text-align:center;
+">
+
+<h2 id="totalPrice">
+
+Total : ₹0
+
+</h2>
+
+<br>
+
+<button class="buy-btn" onclick="buyNow()">
+
+Proceed To Checkout
+
+</button>
+
+</div>
+
+</div>
+
+<script src="cart.js"></script>
+
+</body>
+
+</html>

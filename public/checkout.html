@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1><i class="fa-solid fa-credit-card"></i> Checkout</h1>
+
+<p>Secure Payment</p>
+
+</header>
+
+<div class="form-container">
+
+<h2>Delivery Details</h2>
+
+<input type="text" id="name" placeholder="👤 Full Name">
+
+<input type="text" id="phone" placeholder="📞 Phone Number">
+
+<textarea id="address" placeholder="🏠 Delivery Address"></textarea>
+
+<select id="payment">
+
+<option>Cash On Delivery</option>
+
+<option>UPI</option>
+
+<option>Credit Card</option>
+
+<option>Debit Card</option>
+
+</select>
+
+<h2 id="totalAmount"></h2>
+
+<button onclick="placeOrder()">
+
+🛍 Place Order
+
+</button>
+
+</div>
+
+<script src="checkout.js"></script>
+
+</body>
+
+</html>
